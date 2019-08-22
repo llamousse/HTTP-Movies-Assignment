@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const initialMovie = {
-  id: '',
-  title: '',
-  director: '',
-  metascore: '',
-  stars: []
-}
-
 const UpdateForm = props => {
-    const [movie, setMovie] = useState(initialMovie);
+    const [movie, setMovie] = useState({});
 
-//   useEffect(() => {
-//     const id = props.match.params.id;
-//     const itemInArr = props.items.find(item => {
-//       console.log(item.id, id);
-//       return `${item.id}` === id;
-//     });
-//     console.log(itemInArr);
-//     if (itemInArr) setItem(itemInArr);
-//   }, [props.items, props.match.params.id]);
+    useEffect(() => {
+        axios
+            .get(`http://localhost:5000/api/movies/${props.match.params.id}`)
+            .then(res => {
+                console.log(res.data);
+                setMovie(res.data);
+            })
+            .catch(err =>{
+                console.log(err.response);
+            })
+    }, []);
 
     const changeHandler = ev => {
         ev.persist();
