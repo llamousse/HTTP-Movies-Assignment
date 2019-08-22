@@ -25,6 +25,12 @@ const UpdateForm = props => {
         });
     };
 
+    const handleStarChange = (starInd, name) => {
+        const starsss = [...movie.stars];
+        starsss[starInd] = name.target.value;
+        setMovie({...movie, stars: starsss})
+    }
+
   const handleSubmit = e => {
     e.preventDefault();
     axios
@@ -78,6 +84,7 @@ const UpdateForm = props => {
           placeholder="Stars"
           value={movie.stars}
         />
+        <br />
         <br /> */}
 
         <button className="md-button form-button">Update</button>
