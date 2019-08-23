@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-
 import MovieCard from "./MovieCard";
+// import { Link } from 'react-router-dom';
 
 export default class Movie extends React.Component {
   constructor(props) {
@@ -60,7 +60,8 @@ export default class Movie extends React.Component {
         </div>
         <br/>
         <div className="edit-button" onClick={() => this.props.history.push(`/update-movie/${this.state.movie.id}`)}>
-            Edit
+        {/* <Link to={`/update-movie/${this.state.movie.id}`}>Update</Link> */}
+          Edit
         </div>
         <br />
         <div className="delete-button" onClick={this.deleteMovie}>
