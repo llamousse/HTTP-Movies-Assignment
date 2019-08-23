@@ -45,7 +45,7 @@ export default class Movie extends React.Component {
         console.log(err.response);
       })
   };
-
+  
   render() {
     if (!this.state.movie) {
       return <div>Loading movie information...</div>;
