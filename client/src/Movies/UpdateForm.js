@@ -48,6 +48,11 @@ const UpdateForm = props => {
       .catch(err => console.log(err.response));
   };
 
+  const addStar = event => {
+    event.preventDefault();
+    setMovie({...movie, stars: [...movie.stars, ""]});
+  }
+
   if (!movie) {
     return <div>Loading...</div>
   }
@@ -96,7 +101,7 @@ const UpdateForm = props => {
         })}
         <br />
         <br />
-
+        <button onClick={addStar}>Add Star</button>
         <button type="submit" className="md-button form-button">Update</button>
       </form>
     </div>
