@@ -2,18 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const UpdateForm = props => {
-  const [movie, setMovie] = useState(null);
-
-  const fetchMovie = id => {
-    axios
-      .get(`http://localhost:5000/api/movies/${id}`)
-      .then(res => setMovie(res.data))
-      .catch(err => console.log(err.response));
-  };
+  console.log(props);
+  const [movie, setMovie] = useState(props.movie);
 
   useEffect(() => {
-    fetchMovie(props.match.params.id);
-  }, [props.match.params.id]);
+    setMovie(props.movie);
+  }, [props.movie]);
 
   const handleChange = e => {
     setMovie({
@@ -40,9 +34,11 @@ const UpdateForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/api/movies/${props.match.params.id}`, movie)
+      .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
       .then(res => {
         console.log(res.data);
+        // props.updateMovie(res.data); <- for manually updating movies
+        props.getMovies();
         props.history.push(`/`);
       })
       .catch(err => console.log(err.response));
